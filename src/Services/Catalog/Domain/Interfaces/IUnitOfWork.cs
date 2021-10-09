@@ -1,7 +1,8 @@
 ﻿using Services.Catalog.Core.Domain.Entity;
+using Services.Catalog.Core.Domain.Interfaces.Repository;
 using System.Threading.Tasks;
 
-namespace Services.Catalog.Core.Domain.Interfaces.Repository
+namespace Services.Catalog.Core.Domain.Interfaces
 {
     public interface IUnitOfWork
     {

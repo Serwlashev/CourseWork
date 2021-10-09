@@ -1,4 +1,5 @@
-﻿using ServicesShared.Core.Models;
+﻿using Services.ServicesShared.Core.Interfaces.Repository;
+using Services.ServicesShared.Core.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

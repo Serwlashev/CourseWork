@@ -1,8 +1,8 @@
-﻿using ServicesShared.Core.Models;
+﻿using Services.ServicesShared.Core.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ServicesShared.Core.Interfaces.Repository
+namespace Services.ServicesShared.Core.Interfaces.Repository
 {
     public interface IRepository<TKey, TValue>
         where TKey : struct

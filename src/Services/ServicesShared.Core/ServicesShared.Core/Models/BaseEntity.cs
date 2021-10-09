@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ServicesShared.Core.Models
+namespace Services.ServicesShared.Core.Models
 {
     public class BaseEntity<T>
     {

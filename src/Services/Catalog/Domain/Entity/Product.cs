@@ -1,4 +1,4 @@
-﻿using ServicesShared.Core.Models;
+﻿using Services.ServicesShared.Core.Models;
 
 namespace Services.Catalog.Core.Domain.Entity
 {
