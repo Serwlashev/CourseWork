@@ -9,6 +9,6 @@ namespace Services.Catalog.Core.Domain.Interfaces.Repository
         where TKey : struct
         where TValue : BaseEntity<TKey>
     {
-        Task<IEnumerable<TValue>> FindProductsAsync(string searchText);
+        Task<IEnumerable<TValue>> FindAsync(string searchText);
     }
 }

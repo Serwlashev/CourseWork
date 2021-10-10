@@ -15,7 +15,7 @@ namespace Services.Catalog.Infrastructure.Persistence.Implementation.Repositorie
         {
         }
 
-        public async Task<IEnumerable<Product>> FindProductsAsync(string searchText)
+        public async Task<IEnumerable<Product>> FindAsync(string searchText)
         {
             IEnumerable<Product> entities = null;
 
