@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  catalogdb:
+    container_name: shop_catalogdb
+    restart: always
+    ports:
+      - "1433:1433" 
+    volumes:
+      - catalog_data:/data/db
+
+  catalog.api:
+    container_name: shop.catalog.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mcr.microsoft.com/mssql/server://shop_catalogdb:1433"
+    depends_on:
+      - shop_catalogdb
+    ports:
+      - "5000:80"

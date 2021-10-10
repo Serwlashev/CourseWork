@@ -13,19 +13,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{3D1D0D3D-23F4-4FA2-9A1E-4D059C1DAD1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Services\Catalog\Application\Application.csproj", "{9EBD4685-94E0-48FA-90DB-B71FEC8EACE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Services\Catalog\Application\Application.csproj", "{9EBD4685-94E0-48FA-90DB-B71FEC8EACE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Services\Catalog\Domain\Domain.csproj", "{5A0B861F-6531-43A8-9EEE-416C594C2FFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Services\Catalog\Domain\Domain.csproj", "{5A0B861F-6531-43A8-9EEE-416C594C2FFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Services\Catalog\Persistence\Persistence.csproj", "{1607DEF2-ED61-4DC4-A3F6-EBAE2D104658}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Services\Catalog\Persistence\Persistence.csproj", "{1607DEF2-ED61-4DC4-A3F6-EBAE2D104658}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Catalog\Services\Services.csproj", "{67C6CD7A-D903-4577-8F7E-6BBB3D6BEC21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Catalog\Services\Services.csproj", "{67C6CD7A-D903-4577-8F7E-6BBB3D6BEC21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.API", "Services\Catalog\Catalog.API\Catalog.API.csproj", "{06123B17-7293-42F3-BF06-F3634AEB0594}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.API", "Services\Catalog\Catalog.API\Catalog.API.csproj", "{06123B17-7293-42F3-BF06-F3634AEB0594}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServicesShared.Core", "ServicesShared.Core", "{4624E863-3328-4A36-977D-416EADA2F531}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesShared.Core", "Services\ServicesShared.Core\ServicesShared.Core\ServicesShared.Core.csproj", "{E1D009E7-ED56-40E5-9B5D-C1DBBD51CB8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicesShared.Core", "Services\ServicesShared.Core\ServicesShared.Core\ServicesShared.Core.csproj", "{E1D009E7-ED56-40E5-9B5D-C1DBBD51CB8C}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{0C81708B-A29C-4B60-819F-65280E5A1733}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{E1D009E7-ED56-40E5-9B5D-C1DBBD51CB8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1D009E7-ED56-40E5-9B5D-C1DBBD51CB8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1D009E7-ED56-40E5-9B5D-C1DBBD51CB8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C81708B-A29C-4B60-819F-65280E5A1733}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C81708B-A29C-4B60-819F-65280E5A1733}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C81708B-A29C-4B60-819F-65280E5A1733}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C81708B-A29C-4B60-819F-65280E5A1733}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
