@@ -2,19 +2,30 @@ version: '3.4'
 
 services:
   catalogdb:
-    container_name: shop_catalogdb
+    container_name: catalogdb
     restart: always
     ports:
       - "1433:1433" 
     volumes:
       - catalog_data:/data/db
 
+  portainer:
+    container_name: portainer
+    restart: always
+    ports: 
+      - "8080:8000"
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
   catalog.api:
-    container_name: shop.catalog.api
+    container_name: catalog.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings:ConnectionString=mcr.microsoft.com/mssql/server://shop_catalogdb:1433"
+      - "DatabaseSettings:ConnectionString=Server=host.docker.internal,1433;Database=WebAppDb;User ID=sa;Password=Aa123456789!;MultipleActiveResultSets=true"
     depends_on:
-      - shop_catalogdb
+      - catalogdb
     ports:
-      - "5000:80"
+      - "8000:80"
+      

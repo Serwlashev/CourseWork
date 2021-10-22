@@ -1,4 +1,3 @@
-using Catalog.API.Logging;
 using Catalog.API.Middlewares;
 using FluentValidation.AspNetCore;
 using MediatR;
@@ -10,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 using Services.Catalog.Core.Application.Mapping;

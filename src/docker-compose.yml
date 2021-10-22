@@ -6,19 +6,16 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Aa123456789!
-    networks:
-      - catalog_net
+
+  portainer:
+    image: portainer/portainer-ce
 
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
       context: .
       dockerfile: Services/Catalog/Catalog.API/Dockerfile
-    networks:
-      - catalog_net
 
 volumes:
   catalog_data:
-
-networks:
-  catalog_net:
+  portainer_data:
