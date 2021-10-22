@@ -14,9 +14,9 @@ namespace Services.Catalog.Presentation.Catalog.API.Features.Commands.DeleteProd
             _serviceManager = serviceManager;
         }
 
-        public async Task<DeleteProductCommandResponse> Handle(DeleteProductCommandRequest request, CancellationToken cancellationToken)
+        public async Task<DeleteProductCommandResponse> Handle(DeleteProductCommandRequest request, CancellationToken token)
         {
-            bool result = await _serviceManager.ProductService.RemoveAsync(request.Id);
+            bool result = await _serviceManager.ProductService.RemoveAsync(request.Id, token);
 
             return new DeleteProductCommandResponse
             {

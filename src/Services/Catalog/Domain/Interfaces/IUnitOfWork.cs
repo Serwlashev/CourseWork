@@ -1,5 +1,6 @@
 ﻿using Services.Catalog.Core.Domain.Entity;
 using Services.Catalog.Core.Domain.Interfaces.Repository;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Services.Catalog.Core.Domain.Interfaces
@@ -8,6 +9,6 @@ namespace Services.Catalog.Core.Domain.Interfaces
     {
         IProductsRepository<long, Product> ProductsRepository { get; }
         ICategoriesRepository<long, Category> CategoriesRepository { get; }
-        Task SaveChangesAsync();
+        Task SaveChangesAsync(CancellationToken token = default);
     }
 }

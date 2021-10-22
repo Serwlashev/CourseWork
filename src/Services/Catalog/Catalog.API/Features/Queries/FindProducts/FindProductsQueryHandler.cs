@@ -19,9 +19,9 @@ namespace Services.Catalog.Presentation.Catalog.API.Features.Queries.FindProduct
             _mapper = mapper;
         }
 
-        public async Task<List<FindProductsQueryResponse>> Handle(FindProductsQueryRequest request, CancellationToken cancellationToken)
+        public async Task<List<FindProductsQueryResponse>> Handle(FindProductsQueryRequest request, CancellationToken token)
         {
-            var products = await _serviceManager.ProductService.FindAsync(request.SearchText);
+            var products = await _serviceManager.ProductService.FindAsync(request.SearchText, token);
 
             return _mapper.Map<List<FindProductsQueryResponse>>(products);
         }

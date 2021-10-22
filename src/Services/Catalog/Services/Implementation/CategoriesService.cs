@@ -4,6 +4,7 @@ using Services.Catalog.Core.Application.Interfaces;
 using Services.Catalog.Core.Domain.Entity;
 using Services.Catalog.Core.Domain.Interfaces;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Services.Catalog.Infrastructure.Services.Implementation
@@ -15,41 +16,41 @@ namespace Services.Catalog.Infrastructure.Services.Implementation
         {
         }
 
-        public async override Task<bool> CreateAsync(CategoryDTO entity)
+        public async override Task<bool> CreateAsync(CategoryDTO entity, CancellationToken token = default)
         {
-            _uow.CategoriesRepository.Create(_mapper.Map<Category>(entity));
-            await _uow.SaveChangesAsync();
+            await _uow.CategoriesRepository.CreateAsync(_mapper.Map<Category>(entity), token);
+            await _uow.SaveChangesAsync(token);
 
             return true;
         }
 
-        public async override Task<CategoryDTO> GetAsync(long id)
+        public async override Task<CategoryDTO> GetAsync(long id, CancellationToken token = default)
         {
-            var category = await _uow.CategoriesRepository.GetAsync(id);
+            var category = await _uow.CategoriesRepository.GetAsync(id, token);
 
             return _mapper.Map<CategoryDTO>(category);
         }
 
-        public async override Task<IEnumerable<CategoryDTO>> GetAllAsync()
+        public async override Task<IEnumerable<CategoryDTO>> GetAllAsync(CancellationToken token = default)
         {
-            var category = await _uow.CategoriesRepository.GetAllAsync();
+            var category = await _uow.CategoriesRepository.GetAllAsync(token);
 
             return _mapper.Map<IEnumerable<CategoryDTO>>(category);
         }
 
-        public async override Task<bool> RemoveAsync(long id)
+        public async override Task<bool> RemoveAsync(long id, CancellationToken token = default)
         {
-            var category = await _uow.CategoriesRepository.GetAsync(id);
-            _uow.CategoriesRepository.Remove(category);
-            await _uow.SaveChangesAsync();
+            var category = await _uow.CategoriesRepository.GetAsync(id, token);
+            await _uow.CategoriesRepository.RemoveAsync(category, token);
+            await _uow.SaveChangesAsync(token);
 
             return true;
         }
 
-        public async override Task<bool> UpdateAsync(CategoryDTO entity)
+        public async override Task<bool> UpdateAsync(CategoryDTO entity, CancellationToken token = default)
         {
-            _uow.CategoriesRepository.Update(_mapper.Map<Category>(entity));
-            await _uow.SaveChangesAsync();
+            await _uow.CategoriesRepository.UpdateAsync(_mapper.Map<Category>(entity), token);
+            await _uow.SaveChangesAsync(token);
 
             return true;
         }

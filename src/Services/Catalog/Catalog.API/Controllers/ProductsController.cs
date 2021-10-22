@@ -8,6 +8,7 @@ using Services.Catalog.Presentation.Catalog.API.Features.Queries.FindProducts;
 using Services.Catalog.Presentation.Catalog.API.Features.Queries.GetAllProducts;
 using Services.Catalog.Presentation.Catalog.API.Features.Queries.GetByIdProduct;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Services.Catalog.Presentation.Catalog.API.Controllers
@@ -27,12 +28,12 @@ namespace Services.Catalog.Presentation.Catalog.API.Controllers
         }
 
         [HttpPost]
-        public async Task<CreateProductCommandResponse> CreateProduct([FromBody] CreateProductCommandRequest request)
+        public async Task<CreateProductCommandResponse> CreateProduct([FromBody] CreateProductCommandRequest request, CancellationToken token)
         {
             _logger.LogDebug("Action \"CreateProduct\" received request");
             _logger.LogTrace($"Product name {request.Name}");
 
-            var response = await _mediator.Send(request);
+            var response = await _mediator.Send(request, token);
 
             if (response.Succeed)
             {
@@ -48,11 +49,11 @@ namespace Services.Catalog.Presentation.Catalog.API.Controllers
 
         [HttpGet]
         [ResponseCache(CacheProfileName = "Caching")]
-        public async Task<List<GetAllProductsQueryResponse>> GetAllProducts()
+        public async Task<List<GetAllProductsQueryResponse>> GetAllProducts(CancellationToken token)
         {
             _logger.LogDebug("Action \"GetAllProducts\" received request");
 
-            var response = await _mediator.Send(new GetAllProductsQueryRequest());
+            var response = await _mediator.Send(new GetAllProductsQueryRequest(), token);
 
             if (response is not null && response.Count > 0)
             {
@@ -68,11 +69,11 @@ namespace Services.Catalog.Presentation.Catalog.API.Controllers
 
         [HttpGet("{id}")]
         [ResponseCache(CacheProfileName = "Caching")]
-        public async Task<GetByIdProductQueryResponse> GetByIdProduct([FromHeader] GetByIdProductQueryRequest request)
+        public async Task<GetByIdProductQueryResponse> GetByIdProduct([FromHeader] GetByIdProductQueryRequest request, CancellationToken token)
         {
             _logger.LogDebug($"Action \"GetByIdProduct\" received request, id = { request.Id }");
 
-            var response = await _mediator.Send(request);
+            var response = await _mediator.Send(request, token);
 
             if (response is not null)
             {
@@ -88,12 +89,12 @@ namespace Services.Catalog.Presentation.Catalog.API.Controllers
 
         [HttpGet("find/{searchText}")]
         [ResponseCache(CacheProfileName = "Caching")]
-        public async Task<List<FindProductsQueryResponse>> FindProducts([FromHeader] FindProductsQueryRequest request)
+        public async Task<List<FindProductsQueryResponse>> FindProducts([FromHeader] FindProductsQueryRequest request, CancellationToken token)
         {
             _logger.LogDebug($"Action \"FindProducts\" received request, request text - \"{ request.SearchText }\"");
 
 
-            var response = await _mediator.Send(request);
+            var response = await _mediator.Send(request, token);
 
             if (response is not null && response.Count > 0)
             {
@@ -108,11 +109,11 @@ namespace Services.Catalog.Presentation.Catalog.API.Controllers
         }
 
         [HttpPut]
-        public async Task<UpdateProductCommandResponse> UpdateProduct([FromBody] UpdateProductCommandRequest request)
+        public async Task<UpdateProductCommandResponse> UpdateProduct([FromBody] UpdateProductCommandRequest request, CancellationToken token)
         {
             _logger.LogDebug($"Action \"UpdateProduct\" received request, id = { request.Id }");
 
-            var response = await _mediator.Send(request);
+            var response = await _mediator.Send(request, token);
 
             if (response.Succeed)
             {
@@ -128,11 +129,11 @@ namespace Services.Catalog.Presentation.Catalog.API.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<DeleteProductCommandResponse> DeleteProduct([FromHeader] DeleteProductCommandRequest request)
+        public async Task<DeleteProductCommandResponse> DeleteProduct([FromHeader] DeleteProductCommandRequest request, CancellationToken token)
         {
             _logger.LogDebug($"Action \"DeleteProduct\" received request, id = { request.Id }");
 
-            var response = await _mediator.Send(request);
+            var response = await _mediator.Send(request, token);
 
             if (response.Succeed)
             {

@@ -19,9 +19,9 @@ namespace Services.Catalog.Presentation.Catalog.API.Features.Queries.GetAllProdu
             _mapper = mapper;
         }
 
-        public async Task<List<GetAllProductsQueryResponse>> Handle(GetAllProductsQueryRequest request, CancellationToken cancellationToken)
+        public async Task<List<GetAllProductsQueryResponse>> Handle(GetAllProductsQueryRequest request, CancellationToken token)
         {
-            var products = await _serviceManager.ProductService.GetAllAsync();
+            var products = await _serviceManager.ProductService.GetAllAsync(token);
 
             return _mapper.Map<List<GetAllProductsQueryResponse>>(products);
         }

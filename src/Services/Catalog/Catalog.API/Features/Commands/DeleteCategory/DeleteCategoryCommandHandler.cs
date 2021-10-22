@@ -14,9 +14,9 @@ namespace Services.Catalog.Presentation.Catalog.API.Features.Commands.DeleteCate
             _serviceManager = serviceManager;
         }
 
-        public async Task<DeleteCategoryCommandResponse> Handle(DeleteCategoryCommandRequest request, CancellationToken cancellationToken)
+        public async Task<DeleteCategoryCommandResponse> Handle(DeleteCategoryCommandRequest request, CancellationToken token)
         {
-            bool result = await _serviceManager.CategoryService.RemoveAsync(request.Id);
+            bool result = await _serviceManager.CategoryService.RemoveAsync(request.Id, token);
 
             return new DeleteCategoryCommandResponse
             {

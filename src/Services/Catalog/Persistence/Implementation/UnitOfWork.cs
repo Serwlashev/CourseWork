@@ -2,6 +2,7 @@
 using Services.Catalog.Core.Domain.Interfaces;
 using Services.Catalog.Core.Domain.Interfaces.Repository;
 using Services.Catalog.Infrastructure.Persistence.Implementation.Repositories;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Services.Catalog.Infrastructure.Persistence.Implementation
@@ -22,7 +23,7 @@ namespace Services.Catalog.Infrastructure.Persistence.Implementation
             _applicationContext = context;
         }
 
-        public async Task SaveChangesAsync()
-            => await _applicationContext.SaveChangesAsync();
+        public async Task SaveChangesAsync(CancellationToken token = default)
+            => await _applicationContext.SaveChangesAsync(token).ConfigureAwait(false);
     }
 }

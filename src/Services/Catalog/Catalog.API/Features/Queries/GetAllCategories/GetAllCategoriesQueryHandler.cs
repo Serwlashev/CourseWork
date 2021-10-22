@@ -19,9 +19,9 @@ namespace Services.Catalog.Presentation.Catalog.API.Features.Queries.GetAllCateg
             _mapper = mapper;
         }
 
-        public async Task<List<GetAllCategoriesQueryResponse>> Handle(GetAllCategoriesQueryRequest request, CancellationToken cancellationToken)
+        public async Task<List<GetAllCategoriesQueryResponse>> Handle(GetAllCategoriesQueryRequest request, CancellationToken token)
         {
-            var categories = await _serviceManager.CategoryService.GetAllAsync();
+            var categories = await _serviceManager.CategoryService.GetAllAsync(token);
 
             return _mapper.Map<List<GetAllCategoriesQueryResponse>>(categories);
         }

@@ -17,9 +17,9 @@ namespace Services.Catalog.Presentation.Catalog.API.Features.Queries.GetByIdProd
             _mapper = mapper;
         }
 
-        public async Task<GetByIdProductQueryResponse> Handle(GetByIdProductQueryRequest request, CancellationToken cancellationToken)
+        public async Task<GetByIdProductQueryResponse> Handle(GetByIdProductQueryRequest request, CancellationToken token)
         {
-            var product = await _serviceManager.ProductService.GetAsync(request.Id);
+            var product = await _serviceManager.ProductService.GetAsync(request.Id, token);
 
             return _mapper.Map<GetByIdProductQueryResponse>(product);
         }

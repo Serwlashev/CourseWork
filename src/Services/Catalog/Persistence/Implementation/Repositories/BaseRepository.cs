@@ -2,9 +2,9 @@
 using Services.ServicesShared.Core.Exceptions;
 using Services.ServicesShared.Core.Interfaces.Repository;
 using Services.ServicesShared.Core.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Services.Catalog.Infrastructure.Persistence.Implementation.Repositories
@@ -21,9 +21,9 @@ namespace Services.Catalog.Infrastructure.Persistence.Implementation.Repositorie
             _context = context;
         }
 
-        public virtual async Task<IEnumerable<TValue>> GetAllAsync()
+        public virtual async Task<IEnumerable<TValue>> GetAllAsync(CancellationToken token = default)
         {
-            var entities = await Table.ToListAsync();
+            var entities = await Table.ToListAsync(token).ConfigureAwait(false);
 
             if (!entities.Any())
             {
@@ -33,9 +33,9 @@ namespace Services.Catalog.Infrastructure.Persistence.Implementation.Repositorie
             return entities;
         }
 
-        public virtual async Task<TValue> GetAsync(TKey id)
+        public virtual async Task<TValue> GetAsync(TKey id, CancellationToken token = default)
         {
-            var entity = await Table.FindAsync(id);
+            var entity = await Table.FindAsync(id, token).ConfigureAwait(false);
 
             if (entity == null)
             {
@@ -45,12 +45,12 @@ namespace Services.Catalog.Infrastructure.Persistence.Implementation.Repositorie
             return entity;
         }
 
-        public void Create(TValue entity)
-            => Table.Add(entity);
+        public async Task CreateAsync(TValue entity, CancellationToken token = default)
+            => await Table.AddAsync(entity, token).ConfigureAwait(false);
 
-        public virtual void Remove(TValue entity)
+        public virtual async Task RemoveAsync(TValue entity, CancellationToken token = default)
         {
-            if (!Table.Contains(entity))
+            if (!(await Table.ContainsAsync(entity, token).ConfigureAwait(false)))
             {
                 throw new NotFoundException("Cannot remove entity because it does not exist");
             }
@@ -58,9 +58,9 @@ namespace Services.Catalog.Infrastructure.Persistence.Implementation.Repositorie
             Table.Remove(entity);
         }
 
-        public void Update(TValue entity)
+        public async Task UpdateAsync(TValue entity, CancellationToken token = default)
         {
-            if (!Table.Contains(entity))
+            if (!(await Table.ContainsAsync(entity, token).ConfigureAwait(false)))
             {
                 throw new NotFoundException("Cannot update entity because it does not exist");
             }

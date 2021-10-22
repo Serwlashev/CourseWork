@@ -1,6 +1,7 @@
 ﻿using Services.ServicesShared.Core.Interfaces.Repository;
 using Services.ServicesShared.Core.Models;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Services.Catalog.Core.Domain.Interfaces.Repository
@@ -9,6 +10,6 @@ namespace Services.Catalog.Core.Domain.Interfaces.Repository
         where TKey : struct
         where TValue : BaseEntity<TKey>
     {
-        Task<IEnumerable<TValue>> FindAsync(string searchText);
+        Task<IEnumerable<TValue>> FindAsync(string searchText, CancellationToken token = default);
     }
 }

@@ -15,15 +15,15 @@ namespace Services.Catalog.Presentation.Catalog.API.Features.Commands.UpdateCate
             _serviceManager = serviceManager;
         }
 
-        public async Task<UpdateCategoryCommandResponse> Handle(UpdateCategoryCommandRequest request, CancellationToken cancellationToken)
+        public async Task<UpdateCategoryCommandResponse> Handle(UpdateCategoryCommandRequest request, CancellationToken token)
         {
-            CategoryDTO category = new CategoryDTO
+            CategoryDTO category = new()
             {
                 Id = request.Id,
                 Name = request.Name
             };
 
-            bool result = await _serviceManager.CategoryService.UpdateAsync(category);
+            bool result = await _serviceManager.CategoryService.UpdateAsync(category, token);
 
             return new UpdateCategoryCommandResponse
             {
