@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Services.Catalog.Core.Application.Interfaces
+namespace Services.ServicesShared.Core.Interfaces.Services
 {
     public interface IBaseService<TKey, TValue>
     {

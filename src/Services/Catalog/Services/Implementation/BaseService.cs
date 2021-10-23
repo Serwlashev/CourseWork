@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Services.Catalog.Core.Application.Interfaces;
 using Services.Catalog.Core.Domain.Interfaces;
+using Services.ServicesShared.Core.Interfaces.Services;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

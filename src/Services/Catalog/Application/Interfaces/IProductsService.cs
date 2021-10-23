@@ -1,4 +1,5 @@
 ﻿using Services.Catalog.Core.Application.DTO;
+using Services.ServicesShared.Core.Interfaces.Services;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
