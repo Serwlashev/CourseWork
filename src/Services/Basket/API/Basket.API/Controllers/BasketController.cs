@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Services.Basket.Core.Interfaces.Repositories;
 using Services.Basket.Services.DTO;
 using Services.Basket.Services.Services.Interfaces;
 using System.Net;
@@ -39,9 +40,9 @@ namespace Basket.API.Controllers
 
         [HttpDelete("{userName}", Name = "DeleteBasket")]
         [ProducesResponseType(typeof(ShoppingCartDTO), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult> DeleteBasket(string userName)
+        public async Task<ActionResult> DeleteBasket(string userName, CancellationToken token)
         {
-            await _basketService.DeleteBasket(userName);
+            await _basketService.DeleteBasket(userName, token);
 
             return Ok();
         }

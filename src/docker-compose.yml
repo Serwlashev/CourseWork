@@ -7,6 +7,9 @@ services:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Aa123456789!
 
+  basketdb:
+    image: redis:alpine
+
   portainer:
     image: portainer/portainer-ce
 
@@ -16,6 +19,13 @@ services:
       context: .
       dockerfile: Services/Catalog/Catalog.API/Dockerfile
 
+  basket.api:
+    image: ${DOCKER_REGISTRY-}basketapi
+    build:
+      context: .
+      dockerfile: Services/Basket/API/Basket.API/Dockerfile
+
 volumes:
   catalog_data:
+  basket_data:
   portainer_data:
