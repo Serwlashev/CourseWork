@@ -6,6 +6,6 @@ namespace Services.Basket.Services.DTO
     {
         public string UserName { get; set; }
         public List<ShoppingCartItemDTO> Items { get; set; }
-        public decimal TotalPrice { get; }
+        public decimal TotalPrice { get; set; }
     }
 }
